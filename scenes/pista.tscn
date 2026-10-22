@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dcwm6md5egou3"]
+
+[ext_resource type="Texture2D" uid="uid://c0etqyj3it6xu" path="res://assets/padel.jpg" id="1_251bd"]
+
+[node name="Node2D" type="Node2D" unique_id=1740592505]
+
+[node name="Padel" type="Sprite2D" parent="." unique_id=484233292]
+position = Vector2(-244, -480.99994)
+rotation = -1.5714607
+texture = ExtResource("1_251bd")

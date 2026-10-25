@@ -47,5 +47,12 @@ shape = SubResource("RectangleShape2D_yshh4")
 [node name="Ovillo" parent="." unique_id=1761997163 instance=ExtResource("3_sugp2")]
 position = Vector2(480, 240)
 
-[node name="Gato_Player_1" parent="." unique_id=918266760 instance=ExtResource("4_jyhfs")]
+[node name="Player" parent="." unique_id=918266760 instance=ExtResource("4_jyhfs")]
 position = Vector2(200, 240)
+
+[node name="RoundTimer" type="Timer" parent="." unique_id=1691381355]
+wait_time = 30.0
+one_shot = true
+
+[connection signal="interact_requested" from="Player" to="." method="_on_player_interact_requested"]
+[connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]

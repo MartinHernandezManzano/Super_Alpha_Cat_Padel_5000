@@ -1,11 +1,18 @@
 extends Node2D
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	# arranca la cuenta atras de la ronda al empezar
+	$RoundTimer.start()
 
+func _on_player_interact_requested() -> void:
+	print("Interacción recibida")
+	# si el ovillo se esta moviendo lo para, y si esta parado lo reanuda
+	$Ovillo.set_physics_process(not $Ovillo.is_physics_processing())
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_round_timer_timeout() -> void:
+	# se acabo el tiempo: el gato deja de moverse y de escuchar el espacio
+	$Player.set_physics_process(false)
+	$Player.set_process_unhandled_input(false)
+	# el ovillo tambien se para
+	$Ovillo.set_physics_process(false)
+	print("Fin de la ronda")

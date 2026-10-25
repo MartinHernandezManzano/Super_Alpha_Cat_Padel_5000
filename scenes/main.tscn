@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dcwm6md5egou3"]
+
+[ext_resource type="Script" uid="uid://76ubk4600fgi" path="res://scripts/main.gd" id="1_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://c0etqyj3it6xu" path="res://assets/padel.jpg" id="2_sugp2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh8fr"]
+size = Vector2(757, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yshh4"]
+size = Vector2(39.5, 411)
+
+[node name="Main" type="Node2D" unique_id=1740592505]
+script = ExtResource("1_0wfyh")
+
+[node name="Pista" type="Sprite2D" parent="." unique_id=484233292]
+texture = ExtResource("2_sugp2")
+centered = false
+
+[node name="Paredes" type="Node2D" parent="." unique_id=1417654052]
+
+[node name="ParedArriba" type="StaticBody2D" parent="Paredes" unique_id=1175091970]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/ParedArriba" unique_id=523872869]
+position = Vector2(481, 32)
+shape = SubResource("RectangleShape2D_jh8fr")
+
+[node name="ParedAbajo" type="StaticBody2D" parent="Paredes" unique_id=466156447]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Paredes/ParedAbajo" unique_id=722358306]
+position = Vector2(477, 450)
+shape = SubResource("RectangleShape2D_jh8fr")
+
+[node name="ParedIzqda" type="StaticBody2D" parent="Paredes" unique_id=1808546782]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paredes/ParedIzqda" unique_id=224214513]
+position = Vector2(76.25, 254.5)
+shape = SubResource("RectangleShape2D_yshh4")
+
+[node name="ParedDcha" type="StaticBody2D" parent="Paredes" unique_id=1230266456]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Paredes/ParedDcha" unique_id=136349103]
+position = Vector2(878, 251)
+shape = SubResource("RectangleShape2D_yshh4")

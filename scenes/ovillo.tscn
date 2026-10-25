@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cf75dvvo7wvf1"]
+
+[ext_resource type="Script" uid="uid://cr47ryr8j8svc" path="res://scripts/ovillo.gd" id="1_36n3n"]
+[ext_resource type="Texture2D" uid="uid://bob3j53di8dkl" path="res://assets/sprites/ovillo.png" id="1_clj6a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jh8fr"]
+radius = 13.0
+
+[node name="Ovillo" type="CharacterBody2D" unique_id=1761997163]
+motion_mode = 1
+script = ExtResource("1_36n3n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2001661990]
+texture = ExtResource("1_clj6a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2061408321]
+shape = SubResource("CircleShape2D_jh8fr")

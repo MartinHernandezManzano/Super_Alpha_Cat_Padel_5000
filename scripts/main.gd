@@ -11,6 +11,10 @@ const X_OVILLO2: float = 755.0
 # x de la red, a la izquierda es el campo del 1 y a la derecha el del 2
 const X_RED: float = 480.0
 
+# puntos para ganar, se puede bajar desde el inspector para probar rapido
+@export var puntos_victoria: int = 10
+var partido_terminado: bool = false
+
 var sacador: int = 1
 var puntos_jugados: int = 0
 var esperando_saque: bool = true
@@ -30,6 +34,7 @@ func _ready() -> void:
 	$Ovillo.toca_gato.connect(_on_ovillo_toca_gato)
 		# marcador grande oculto y textos a 0
 	$HUD/Resumen.visible = false
+	$HUD/Resumen/Mensaje.visible = false
 	actualizar_textos()
 	preparar_saque()
 
@@ -131,6 +136,10 @@ func fin_de_punto(ganador: int, motivo: String) -> void:
 	print("PUNTO para el jugador ", ganador, " -> ", motivo)
 	# animacion del marcador, espera a que termine antes de seguir
 	await mostrar_punto(ganador)
+		# si alguien llega a los puntos de victoria se acaba el partido
+	if puntos1 >= puntos_victoria or puntos2 >= puntos_victoria:
+		terminar_partido(ganador)
+		return
 	puntos_jugados += 1
 	preparar_saque()
 	
@@ -171,3 +180,22 @@ func actualizar_textos() -> void:
 	$HUD/Resumen/Numeros/Puntos1.text = str(puntos1)
 	$HUD/Resumen/Numeros/Puntos2.text = str(puntos2)
 	$HUD/MarcadorPeq.text = str(puntos1) + " - " + str(puntos2)
+	
+func terminar_partido(ganador: int) -> void:
+	partido_terminado = true
+	# busca el gato que ha ganado para sacar su nombre
+	var gato_ganador = $Player1
+	if ganador == 2:
+		gato_ganador = $Player2
+	# deja el marcador grande fijo con el mensaje de victoria
+	$HUD/MarcadorPeq.visible = false
+	$HUD/Resumen.visible = true
+	$HUD/Resumen/Mensaje.text = "GANA " + gato_ganador.nombre.to_upper() + "\n\nESPACIO O ENTER PARA REVANCHA"
+	$HUD/Resumen/Mensaje.visible = true
+
+func _unhandled_input(event: InputEvent) -> void:
+	# con el partido acabado cualquier tecla de saque reinicia
+	if not partido_terminado:
+		return
+	if event.is_action_pressed("p1_saque") or event.is_action_pressed("p2_saque"):
+		get_tree().reload_current_scene()

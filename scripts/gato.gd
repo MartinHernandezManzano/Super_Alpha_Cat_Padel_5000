@@ -7,6 +7,8 @@ signal interact_requested(jugador: int)
 @export var jugador: int = 1
 # sprite del gato, si se deja vacio usa el que trae la escena
 @export var textura: Texture2D
+# nombre del gato para los mensajes (miguel, uma, tinsel, mati)
+@export var nombre: String = "Miguel"
 @export var velocidad: float = 340.0
 
 func _ready() -> void:

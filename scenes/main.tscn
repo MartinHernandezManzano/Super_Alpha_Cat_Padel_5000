@@ -58,6 +58,7 @@ position = Vector2(200, 240)
 position = Vector2(760, 240)
 jugador = 2
 textura = ExtResource("5_tbgi4")
+nombre = "Uma"
 
 [node name="Red" type="StaticBody2D" parent="." unique_id=805377532]
 position = Vector2(480, 240)
@@ -85,7 +86,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.4117647)
-metadata/_edit_use_anchors_ = true
 
 [node name="Numeros" type="HBoxContainer" parent="HUD/Resumen" unique_id=935809330]
 layout_mode = 1
@@ -123,6 +123,25 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 64
 text = "0"
+
+[node name="Mensaje" type="Label" parent="HUD/Resumen" unique_id=639772552]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -138.0
+offset_top = -159.0
+offset_right = 134.0
+offset_bottom = -143.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "GANA EL JUGADOR 1"
+horizontal_alignment = 1
 
 [connection signal="interact_requested" from="Player1" to="." method="_on_player_interact_requested"]
 [connection signal="interact_requested" from="Player2" to="." method="_on_player_interact_requested"]

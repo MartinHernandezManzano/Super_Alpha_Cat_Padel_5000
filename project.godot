@@ -24,6 +24,15 @@ window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+gatos=""
+ovillo=""
+
+[gui]
+
+theme/custom_font="uid://ffjylmu8w45h"
+
 [input]
 
 p1_arriba={

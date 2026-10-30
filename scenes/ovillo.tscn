@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_jh8fr"]
 radius = 13.0
 
-[node name="Ovillo" type="CharacterBody2D" unique_id=1761997163]
+[node name="Ovillo" type="CharacterBody2D" unique_id=1761997163 groups=["ovillo"]]
 motion_mode = 1
 script = ExtResource("1_36n3n")
 

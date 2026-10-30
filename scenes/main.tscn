@@ -68,3 +68,4 @@ position = Vector2(-1, 5)
 shape = SubResource("RectangleShape2D_lyu5e")
 
 [connection signal="interact_requested" from="Player1" to="." method="_on_player_interact_requested"]
+[connection signal="interact_requested" from="Player2" to="." method="_on_player_interact_requested"]

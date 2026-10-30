@@ -4,12 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://c0etqyj3it6xu" path="res://assets/padel.jpg" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cf75dvvo7wvf1" path="res://scenes/ovillo.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://3t0net2rvhq8" path="res://scenes/player/gato.tscn" id="4_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://dy2um42n4rg6l" path="res://assets/sprites/gato_negro.png" id="5_tbgi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh8fr"]
 size = Vector2(757, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yshh4"]
 size = Vector2(39.5, 411)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lyu5e"]
+size = Vector2(8, 381)
 
 [node name="Main" type="Node2D" unique_id=1740592505]
 script = ExtResource("1_0wfyh")
@@ -47,12 +51,20 @@ shape = SubResource("RectangleShape2D_yshh4")
 [node name="Ovillo" parent="." unique_id=1761997163 instance=ExtResource("3_sugp2")]
 position = Vector2(480, 240)
 
-[node name="Player" parent="." unique_id=918266760 instance=ExtResource("4_jyhfs")]
+[node name="Player1" parent="." unique_id=918266760 instance=ExtResource("4_jyhfs")]
 position = Vector2(200, 240)
 
-[node name="RoundTimer" type="Timer" parent="." unique_id=1691381355]
-wait_time = 30.0
-one_shot = true
+[node name="Player2" parent="." unique_id=329938618 instance=ExtResource("4_jyhfs")]
+position = Vector2(760, 240)
+jugador = 2
+textura = ExtResource("5_tbgi4")
 
-[connection signal="interact_requested" from="Player" to="." method="_on_player_interact_requested"]
-[connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
+[node name="Red" type="StaticBody2D" parent="." unique_id=805377532]
+position = Vector2(480, 240)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Red" unique_id=1841676989]
+position = Vector2(-1, 5)
+shape = SubResource("RectangleShape2D_lyu5e")
+
+[connection signal="interact_requested" from="Player1" to="." method="_on_player_interact_requested"]

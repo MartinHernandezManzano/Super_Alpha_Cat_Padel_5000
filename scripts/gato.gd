@@ -1,19 +1,27 @@
 extends CharacterBody2D
 
-# velocidad del gato en pixeles por segundo
-@export var velocidad: float = 250.0
-
-# señal propia: avisa de que el jugador quiere interactuar
+# señal propia: avisa de que el jugador quiere sacar
 signal interact_requested
 
+# numero de jugador: 1 usa teclas p1_..., 2 usa teclas p2_...
+@export var jugador: int = 1
+# sprite del gato, si se deja vacio usa el que trae la escena
+@export var textura: Texture2D
+@export var velocidad: float = 250.0
+
+func _ready() -> void:
+	# si le hemos puesto otra textura desde el inspector la cargamos
+	if textura:
+		$Sprite2D.texture = textura
+
 func _physics_process(_delta: float) -> void:
-	# lee las 4 teclas y devuelve la direccion como vector (x, y)
-	var direccion := Input.get_vector("p1_izquierda", "p1_derecha", "p1_arriba", "p1_abajo")
+	# monta el nombre de las acciones segun el jugador, ej: "p2_arriba"
+	var p := "p" + str(jugador) + "_"
+	var direccion := Input.get_vector(p + "izquierda", p + "derecha", p + "arriba", p + "abajo")
 	velocity = direccion * velocidad
-	# mueve el gato y si choca con algo se para o se desliza
 	move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:
-	# si se pulsa la tecla de interact, emite la señal
-	if event.is_action_pressed("interact"):
+	# cada jugador saca con su propia tecla
+	if event.is_action_pressed("p" + str(jugador) + "_saque"):
 		interact_requested.emit()

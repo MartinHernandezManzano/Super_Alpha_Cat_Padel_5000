@@ -21,11 +21,16 @@ var campo: int = 1                   # campo donde esta el ovillo
 var paredes: int = 0                 # paredes tocadas en ese campo
 var dueno_ha_golpeado: bool = false  # si el gato de ese campo lo ha tocado
 var ultimo_golpeador: int = 0
+var puntos1: int = 0
+var puntos2: int = 0
 
 func _ready() -> void:
 	# conectamos por codigo las señales del ovillo
 	$Ovillo.toca_pared.connect(_on_ovillo_toca_pared)
 	$Ovillo.toca_gato.connect(_on_ovillo_toca_gato)
+		# marcador grande oculto y textos a 0
+	$HUD/Resumen.visible = false
+	actualizar_textos()
 	preparar_saque()
 
 func _physics_process(_delta: float) -> void:
@@ -124,7 +129,45 @@ func fin_de_punto(ganador: int, motivo: String) -> void:
 	$Player1.set_physics_process(false)
 	$Player2.set_physics_process(false)
 	print("PUNTO para el jugador ", ganador, " -> ", motivo)
-	# espera 1 segundo para ver la jugada y prepara el siguiente saque
-	await get_tree().create_timer(1.0).timeout
+	# animacion del marcador, espera a que termine antes de seguir
+	await mostrar_punto(ganador)
 	puntos_jugados += 1
 	preparar_saque()
+	
+func mostrar_punto(ganador: int) -> void:
+	# cambia el marcador pequeño por el grande
+	$HUD/MarcadorPeq.visible = false
+	$HUD/Resumen.visible = true
+	var numero: Label = $HUD/Resumen/Numeros/Puntos1
+	if ganador == 2:
+		numero = $HUD/Resumen/Numeros/Puntos2
+	await espera(0.6)
+	# parpadea el numero viejo, suma el punto y parpadea el nuevo
+	await parpadear(numero, 3)
+	if ganador == 1:
+		puntos1 += 1
+	else:
+		puntos2 += 1
+	actualizar_textos()
+	await parpadear(numero, 4)
+	await espera(1.0)
+	# vuelta al marcador pequeño
+	$HUD/Resumen.visible = false
+	$HUD/MarcadorPeq.visible = true
+
+func parpadear(label: Label, veces: int) -> void:
+	# lo hacemos transparente y opaco en vez de ocultarlo
+	# asi el hbox no recoloca los numeros en cada parpadeo
+	for i in veces:
+		label.modulate.a = 0.0
+		await espera(0.12)
+		label.modulate.a = 1.0
+		await espera(0.12)
+
+func espera(segundos: float) -> void:
+	await get_tree().create_timer(segundos).timeout
+
+func actualizar_textos() -> void:
+	$HUD/Resumen/Numeros/Puntos1.text = str(puntos1)
+	$HUD/Resumen/Numeros/Puntos2.text = str(puntos2)
+	$HUD/MarcadorPeq.text = str(puntos1) + " - " + str(puntos2)

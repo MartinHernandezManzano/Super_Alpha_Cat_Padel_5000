@@ -67,5 +67,62 @@ collision_layer = 2
 position = Vector2(-1, 5)
 shape = SubResource("RectangleShape2D_lyu5e")
 
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1153150359]
+
+[node name="MarcadorPeq" type="Label" parent="HUD" unique_id=1872963497]
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 92.0
+offset_bottom = 26.0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 10
+text = "0 - 0"
+
+[node name="Resumen" type="ColorRect" parent="HUD" unique_id=409657504]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4117647)
+metadata/_edit_use_anchors_ = true
+
+[node name="Numeros" type="HBoxContainer" parent="HUD/Resumen" unique_id=935809330]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Puntos1" type="Label" parent="HUD/Resumen/Numeros" unique_id=1264022521]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="Guion" type="Label" parent="HUD/Resumen/Numeros" unique_id=1445782625]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 64
+text = "-"
+
+[node name="Puntos2" type="Label" parent="HUD/Resumen/Numeros" unique_id=925490073]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 64
+text = "0"
+
 [connection signal="interact_requested" from="Player1" to="." method="_on_player_interact_requested"]
 [connection signal="interact_requested" from="Player2" to="." method="_on_player_interact_requested"]

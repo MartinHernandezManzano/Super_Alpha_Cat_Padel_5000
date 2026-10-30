@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://hkhjo6or7o8o"]
+
+[ext_resource type="Script" uid="uid://bieidekikbwrl" path="res://scripts/seleccion.gd" id="1_l27b2"]
+[ext_resource type="Texture2D" uid="uid://c0etqyj3it6xu" path="res://assets/padel.jpg" id="2_ylhdw"]
+[ext_resource type="Texture2D" uid="uid://cda8371xcvn20" path="res://assets/sprites/gato_naranja.png" id="3_p12xs"]
+
+[node name="Seleccion" type="Control" unique_id=486118800]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l27b2")
+
+[node name="Fondo" type="TextureRect" parent="." unique_id=1613646256]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ylhdw")
+expand_mode = 1
+
+[node name="Oscuro" type="ColorRect" parent="." unique_id=1114349282]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="Titulo" type="Label" parent="." unique_id=1206216199]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 40.0
+offset_right = 120.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "ELIGE TU GATETE"
+horizontal_alignment = 1
+
+[node name="Lados" type="HBoxContainer" parent="." unique_id=1048811951]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -20.0
+offset_right = 22.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 120
+
+[node name="Lado1" type="VBoxContainer" parent="Lados" unique_id=1399488507]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Jugador" type="Label" parent="Lados/Lado1" unique_id=802763687]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "JUGADOR 1"
+horizontal_alignment = 1
+
+[node name="Foto" type="TextureRect" parent="Lados/Lado1" unique_id=850423802]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("3_p12xs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Nombre" type="Label" parent="Lados/Lado1" unique_id=484394428]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "MIGUEL"
+horizontal_alignment = 1
+
+[node name="Teclas" type="Label" parent="Lados/Lado1" unique_id=1306593459]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "A D + ESPACIO"
+horizontal_alignment = 1
+
+[node name="Estado" type="Label" parent="Lados/Lado1" unique_id=1318053187]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Lado2" type="VBoxContainer" parent="Lados" unique_id=2000658219]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Jugador" type="Label" parent="Lados/Lado2" unique_id=530143548]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "JUGADOR 2"
+horizontal_alignment = 1
+
+[node name="Foto" type="TextureRect" parent="Lados/Lado2" unique_id=1143553900]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("3_p12xs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Nombre" type="Label" parent="Lados/Lado2" unique_id=1525654913]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "MIGUEL"
+horizontal_alignment = 1
+
+[node name="Teclas" type="Label" parent="Lados/Lado2" unique_id=1057380601]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "FLECHAS + ENTER"
+horizontal_alignment = 1
+
+[node name="Estado" type="Label" parent="Lados/Lado2" unique_id=509247259]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1

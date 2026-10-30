@@ -29,6 +29,9 @@ var puntos1: int = 0
 var puntos2: int = 0
 
 func _ready() -> void:
+		# carga los gatos elegidos en la pantalla de seleccion
+	$Player1.poner_gato(Global.TEXTURAS[Global.gato1], Global.NOMBRES[Global.gato1])
+	$Player2.poner_gato(Global.TEXTURAS[Global.gato2], Global.NOMBRES[Global.gato2])
 	# conectamos por codigo las señales del ovillo
 	$Ovillo.toca_pared.connect(_on_ovillo_toca_pared)
 	$Ovillo.toca_gato.connect(_on_ovillo_toca_gato)
@@ -190,7 +193,7 @@ func terminar_partido(ganador: int) -> void:
 	# deja el marcador grande fijo con el mensaje de victoria
 	$HUD/MarcadorPeq.visible = false
 	$HUD/Resumen.visible = true
-	$HUD/Resumen/Mensaje.text = "GANA " + gato_ganador.nombre.to_upper() + "\n\nESPACIO O ENTER PARA REVANCHA"
+	$HUD/Resumen/Mensaje.text = "GANA " + gato_ganador.nombre.to_upper() + "\n\nESPACIO O ENTER PARA VOLVER"
 	$HUD/Resumen/Mensaje.visible = true
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -198,4 +201,5 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not partido_terminado:
 		return
 	if event.is_action_pressed("p1_saque") or event.is_action_pressed("p2_saque"):
-		get_tree().reload_current_scene()
+				# vuelve a la pantalla de seleccion para elegir gatos otra vez
+		get_tree().change_scene_to_file("res://scenes/ui/seleccion.tscn")

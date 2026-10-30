@@ -32,3 +32,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	# cada jugador saca con su propia tecla
 	if event.is_action_pressed("p" + str(jugador) + "_saque"):
 		interact_requested.emit(jugador)
+		
+func poner_gato(nueva_textura: Texture2D, nuevo_nombre: String) -> void:
+	# cambia el aspecto y el nombre del gato
+	textura = nueva_textura
+	nombre = nuevo_nombre
+	$Sprite2D.texture = nueva_textura

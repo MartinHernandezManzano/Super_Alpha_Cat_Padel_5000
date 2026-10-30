@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="JUEGO"
-run/main_scene="uid://dcwm6md5egou3"
+run/main_scene="uid://hkhjo6or7o8o"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*uid://cx46q4fefuoj7"
 
 [display]
 

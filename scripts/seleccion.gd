@@ -58,4 +58,5 @@ func empezar_partido() -> void:
 	cambiando = true
 	# pausa cortita para que se vea el listo de los dos
 	await get_tree().create_timer(0.6).timeout
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	# despues de los gatos toca elegir pelota
+	get_tree().change_scene_to_file("res://scenes/ui/seleccion_pelota.tscn")

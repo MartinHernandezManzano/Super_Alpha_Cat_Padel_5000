@@ -16,7 +16,18 @@ var tiempo_desde_golpe: float = 0.0
 
 func _ready() -> void:
 	velocidad = velocidad_inicial
-	
+
+func poner_pelota(datos: Dictionary) -> void:
+	# cambia aspecto, tamaño y velocidades segun la pelota elegida
+	$Sprite2D.texture = datos["textura"]
+	# forma nueva para no tocar la que viene guardada en la escena
+	var forma := CircleShape2D.new()
+	forma.radius = datos["radio"]
+	$CollisionShape2D.shape = forma
+	velocidad_inicial = datos["inicial"]
+	aceleracion = datos["aceleracion"]
+	velocidad_maxima = datos["maxima"]
+	velocidad = velocidad_inicial
 
 func _physics_process(delta: float) -> void:
 	tiempo_desde_golpe += delta

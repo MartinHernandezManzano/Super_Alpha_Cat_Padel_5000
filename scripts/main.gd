@@ -13,6 +13,8 @@ const X_RED: float = 480.0
 
 # puntos para ganar, se puede bajar desde el inspector para probar rapido
 @export var puntos_victoria: int = 10
+# paredes que puede tocar el ovillo en un campo, la siguiente es falta
+@export var max_paredes: int = 2
 var partido_terminado: bool = false
 
 var sacador: int = 1
@@ -30,8 +32,10 @@ var puntos2: int = 0
 
 func _ready() -> void:
 		# carga los gatos elegidos en la pantalla de seleccion
-	$Player1.poner_gato(Global.TEXTURAS[Global.gato1], Global.NOMBRES[Global.gato1])
-	$Player2.poner_gato(Global.TEXTURAS[Global.gato2], Global.NOMBRES[Global.gato2])
+	$Player1.poner_gato(Global.TEXTURAS[Global.gato1], Global.NOMBRES[Global.gato1], Global.TEXTURAS_DORMIDO[Global.gato1])
+	$Player2.poner_gato(Global.TEXTURAS[Global.gato2], Global.NOMBRES[Global.gato2], Global.TEXTURAS_DORMIDO[Global.gato2])
+	# carga la pelota elegida
+	$Ovillo.poner_pelota(Global.PELOTAS[Global.pelota])
 	# conectamos por codigo las señales del ovillo
 	$Ovillo.toca_pared.connect(_on_ovillo_toca_pared)
 	$Ovillo.toca_gato.connect(_on_ovillo_toca_gato)
@@ -60,7 +64,7 @@ func _on_ovillo_toca_pared() -> void:
 		return
 	# regla 1: dos paredes en el mismo campo
 	paredes += 1
-	if paredes >= 2:
+	if paredes > max_paredes:
 		fin_de_punto(rival(campo), "dos paredes en el campo " + str(campo))
 
 func _on_ovillo_toca_gato(jugador: int) -> void:
@@ -106,12 +110,22 @@ func preparar_saque() -> void:
 		$Player2.position = Vector2(X_GATO2, y_saque)
 		$Player1.position = Vector2(X_GATO1, y_resto)
 		$Ovillo.position = Vector2(X_OVILLO2, y_saque)
+	# cada punto empieza con los gatos descansados
+	$Player1.reiniciar()
+	$Player2.reiniciar()
 	$Ovillo.parar()
 	$Player1.set_physics_process(false)
 	$Player2.set_physics_process(false)
 	print("saca el jugador ", sacador)
 
 func _on_player_interact_requested(jugador: int) -> void:
+	# en mitad del punto la tecla de saque sirve para hacer dash
+	if en_juego:
+		var gato = $Player1
+		if jugador == 2:
+			gato = $Player2
+		gato.dash()
+		return
 	if not esperando_saque or jugador != sacador:
 		return
 	esperando_saque = false

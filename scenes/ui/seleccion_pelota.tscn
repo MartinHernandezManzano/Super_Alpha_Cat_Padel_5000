@@ -1,0 +1,107 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/seleccion_pelota.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/padel.jpg" id="2_pista"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ovillo.png" id="3_ovillo"]
+
+[node name="SeleccionPelota" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Fondo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_pista")
+expand_mode = 1
+
+[node name="Oscuro" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="Titulo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = 40.0
+offset_right = 240.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "ELIGE LA PELOTA"
+horizontal_alignment = 1
+
+[node name="Centro" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -130.0
+offset_right = 280.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="Foto" type="TextureRect" parent="Centro"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("3_ovillo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Nombre" type="Label" parent="Centro"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "< OVILLO >"
+horizontal_alignment = 1
+
+[node name="Texto" type="Label" parent="Centro"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 16
+text = "EL DE TODA LA VIDA"
+horizontal_alignment = 1
+
+[node name="Stats" type="Label" parent="Centro"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_constants/line_spacing = 6
+theme_override_font_sizes/font_size = 16
+text = "SALIDA   ★★★☆☆"
+horizontal_alignment = 1
+
+[node name="Teclas" type="Label" parent="Centro"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 8
+text = "A D / FLECHAS: CAMBIAR   ESPACIO / ENTER: A JUGAR"
+horizontal_alignment = 1

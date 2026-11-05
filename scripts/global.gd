@@ -10,6 +10,46 @@ const TEXTURAS = [
 	preload("res://assets/sprites/gato_koshka.png"),
 ]
 
+# los mismos gatos con los ojos cerrados, para cuando se duermen
+const TEXTURAS_DORMIDO = [
+	preload("res://assets/sprites/gato_naranja_dormido.png"),
+	preload("res://assets/sprites/gato_negro_dormido.png"),
+	preload("res://assets/sprites/gato_blanco_dormido.png"),
+	preload("res://assets/sprites/gato_gris_dormido.png"),
+	preload("res://assets/sprites/gato_koshka_dormido.png"),
+]
+
+# las pelotas: cada una es un diccionario (como un HashMap de java) con sus datos
+# radio = tamaño de la colision, inicial/maxima = velocidades, aceleracion = por golpe
+const PELOTAS = [
+	{
+		"nombre": "Ovillo",
+		"texto": "EL DE TODA LA VIDA",
+		"textura": preload("res://assets/sprites/ovillo.png"),
+		"radio": 13.0, "inicial": 380.0, "aceleracion": 1.035, "maxima": 600.0,
+	},
+	{
+		"nombre": "Fútbol",
+		"texto": "SALE DISPARADO PERO ACELERA POCO",
+		"textura": preload("res://assets/sprites/pelota_futbol.png"),
+		"radio": 13.0, "inicial": 430.0, "aceleracion": 1.02, "maxima": 600.0,
+	},
+	{
+		"nombre": "Basket",
+		"texto": "GRANDE Y PESADO",
+		"textura": preload("res://assets/sprites/pelota_basket.png"),
+		"radio": 17.0, "inicial": 330.0, "aceleracion": 1.03, "maxima": 520.0,
+	},
+	{
+		"nombre": "Béisbol",
+		"texto": "PEQUEÑA Y SE DESBOCA",
+		"textura": preload("res://assets/sprites/pelota_beisbol.png"),
+		"radio": 10.0, "inicial": 380.0, "aceleracion": 1.05, "maxima": 720.0,
+	},
+]
+
 # posicion en la lista del gato elegido por cada jugador
 var gato1: int = 0
 var gato2: int = 1
+# pelota elegida
+var pelota: int = 0

@@ -14,13 +14,13 @@ Los gatos del juego son gatos reales:
 
 ## Recursos
 
-- **Sprites** de los gatos (Miguel, Uma, Tinsel, Mati y Кошка) y del ovillo: pixel art generado para este proyecto con Claude (Anthropic).
+- **Sprites** de los gatos (Miguel, Uma, Tinsel, Mati y Кошка, despiertos y dormidos) y de las pelotas (ovillo, fútbol, basket y béisbol): pixel art generado para este proyecto con Claude (Anthropic).
 - **Fuente** *Press Start 2P* (`assets/fonts/PressStart2P-Regular.ttf`), de CodeMan38, con licencia SIL Open Font License 1.1 (ver `assets/fonts/OFL.txt`).
 - **Imagen de la pista** (`assets/padel.jpg`): fotografía aérea de una pista de pádel. 
 
 ## Asistencia
 
-- **Claude** (Anthropic): asistente de IA durante el desarrollo. Ayudó con el planteamiento de la arquitectura en Godot, con explicaciones de GDScript, con el código de las reglas, el marcador y la selección, y con los sprites.
+- **Claude** (Anthropic): asistente de IA durante el desarrollo. Ayudó con el planteamiento de la arquitectura en Godot, con explicaciones de GDScript, con el código de las reglas, el marcador, el dash con estamina y las pantallas de selección, y con los sprites.
 
 ## Motor
 

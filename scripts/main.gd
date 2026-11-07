@@ -48,16 +48,21 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if not en_juego:
 		return
-	# regla 2: mirar si el ovillo ha cambiado de campo
+	# regla 2: mirar si el ovillo ha cruzado entero al otro campo
 	var nuevo_campo := campo_del_ovillo()
 	if nuevo_campo != campo:
-		if not dueno_ha_golpeado:
-			fin_de_punto(rival(campo), "sale del campo " + str(campo) + " sin que su gato lo toque")
-			return
-		# cruce valido: empieza la cuenta en el campo nuevo
-		campo = nuevo_campo
-		paredes = 0
-		dueno_ha_golpeado = false
+		cambiar_de_campo(nuevo_campo)
+
+func cambiar_de_campo(nuevo_campo: int) -> bool:
+	# devuelve false si al cruzar se acaba el punto
+	if not dueno_ha_golpeado:
+		fin_de_punto(rival(campo), "sale del campo " + str(campo) + " sin que su gato lo toque")
+		return false
+	# cruce valido: empieza la cuenta en el campo nuevo
+	campo = nuevo_campo
+	paredes = 0
+	dueno_ha_golpeado = false
+	return true
 
 func _on_ovillo_toca_pared() -> void:
 	if not en_juego:
@@ -70,6 +75,11 @@ func _on_ovillo_toca_pared() -> void:
 func _on_ovillo_toca_gato(jugador: int) -> void:
 	if not en_juego:
 		return
+	# si un gato pegado a la red lo toca antes de que cruce entero,
+	# cuenta como que ya ha llegado a su campo (y si no era valido, punto)
+	if jugador != campo:
+		if not cambiar_de_campo(jugador):
+			return
 	# regla 3: el mismo gato no puede tocarlo dos veces seguidas
 	if jugador == ultimo_golpeador:
 		fin_de_punto(rival(jugador), "doble toque del jugador " + str(jugador))
@@ -79,9 +89,15 @@ func _on_ovillo_toca_gato(jugador: int) -> void:
 	dueno_ha_golpeado = true
 
 func campo_del_ovillo() -> int:
-	if $Ovillo.position.x < X_RED:
+	# solo cambia de campo cuando el ovillo ha pasado la red entero (centro + radio)
+	var x: float = $Ovillo.position.x
+	var radio: float = $Ovillo.radio
+	if x < X_RED - radio:
 		return 1
-	return 2
+	if x > X_RED + radio:
+		return 2
+	# encima de la red: sigue contando el campo de antes
+	return campo
 
 func rival(jugador: int) -> int:
 	if jugador == 1:

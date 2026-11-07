@@ -12,7 +12,7 @@ signal interact_requested(jugador: int)
 @export var velocidad: float = 340.0
 # dash: acelerón corto en la direccion en la que se mueve
 @export var velocidad_dash: float = 900.0
-@export var duracion_dash: float = 0.075
+@export var duracion_dash: float = 0.1
 var tiempo_dash: float = 0.0          # lo que queda de dash, 0 = no esta en dash
 var direccion_dash: Vector2 = Vector2.ZERO
 # estamina: el dash gasta, se recupera sola (mas rapido si estas quieto)

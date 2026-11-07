@@ -5,6 +5,7 @@ const RANGO_INICIAL = [320.0, 440.0]
 const RANGO_MAXIMA = [500.0, 740.0]
 const RANGO_ACELERACION = [1.015, 1.055]
 const RANGO_RADIO = [9.0, 18.0]
+const RANGO_REBOTE = [1.0, 1.8]
 
 var cambiando: bool = false  # para no cargar el partido dos veces
 
@@ -39,7 +40,8 @@ func actualizar() -> void:
 	stats += "SALIDA   " + estrellas(datos["inicial"], RANGO_INICIAL) + "\n"
 	stats += "TOPE     " + estrellas(datos["maxima"], RANGO_MAXIMA) + "\n"
 	stats += "ACELERA  " + estrellas(datos["aceleracion"], RANGO_ACELERACION) + "\n"
-	stats += "TAMAÑO   " + estrellas(datos["radio"], RANGO_RADIO)
+	stats += "TAMAÑO   " + estrellas(datos["radio"], RANGO_RADIO) + "\n"
+	stats += "BOTE     " + estrellas(datos["rebote"], RANGO_REBOTE)
 	$Centro/Stats.text = stats
 
 func estrellas(valor: float, rango: Array) -> String:

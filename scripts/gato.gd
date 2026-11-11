@@ -24,6 +24,9 @@ var estamina: float = 100.0
 # dormido: si intenta un dash sin estamina se queda frito un rato
 @export var duracion_sueno: float = 1.0
 var tiempo_sueno: float = 0.0   # lo que le queda de siesta, 0 = despierto
+# ultima direccion de cada eje, para saber que tecla se pulso primero
+var eje_x: int = 0
+var eje_y: int = 0
 var textura_dormido: Texture2D
 
 func _ready() -> void:
@@ -79,7 +82,26 @@ func poner_gato(nueva_textura: Texture2D, nuevo_nombre: String, nueva_textura_do
 func leer_direccion() -> Vector2:
 	# monta el nombre de las acciones segun el jugador, ej: "p2_arriba"
 	var p := "p" + str(jugador) + "_"
-	return Input.get_vector(p + "izquierda", p + "derecha", p + "arriba", p + "abajo")
+	# cada eje por separado para que mande la primera tecla pulsada
+	eje_x = leer_eje(eje_x, p + "izquierda", p + "derecha")
+	eje_y = leer_eje(eje_y, p + "arriba", p + "abajo")
+	# normalized para que en diagonal no vaya mas rapido
+	return Vector2(eje_x, eje_y).normalized()
+
+func leer_eje(actual: int, tecla_menos: String, tecla_mas: String) -> int:
+	# devuelve -1, 0 o 1 para un eje (izquierda/derecha o arriba/abajo)
+	var menos := Input.is_action_pressed(tecla_menos)
+	var mas := Input.is_action_pressed(tecla_mas)
+	if menos and mas:
+		# las dos a la vez: sigue la que ya estaba pulsada antes
+		if actual != 0:
+			return actual
+		return -1  # pulsadas en el mismo instante, gana cualquiera
+	if menos:
+		return -1
+	if mas:
+		return 1
+	return 0
 
 func dash() -> bool:
 	# devuelve true si ha hecho el dash, false si no (quieto, ya en dash o dormido)

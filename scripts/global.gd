@@ -22,6 +22,8 @@ const TEXTURAS_DORMIDO = [
 # las pelotas: cada una es un diccionario (como un HashMap de java) con sus datos
 # radio = tamaño de la colision, inicial/maxima = velocidades, aceleracion = por golpe
 # rebote = velocidad extra al chocar (1.0 = nada), frenado = lo rapido que se pierde
+# forma = "circulo" si no se pone nada, "rugby" para el balon alargado
+# caos = estrellas de caos (1 a 5) que se ven al elegir, 1 si no se pone nada
 const PELOTAS = [
 	{
 		"nombre": "Ovillo",
@@ -50,6 +52,14 @@ const PELOTAS = [
 		"textura": preload("res://assets/sprites/pelota_beisbol.png"),
 		"radio": 10.0, "inicial": 380.0, "aceleracion": 1.05, "maxima": 720.0,
 		"rebote": 1.1, "frenado": 4.0,
+	},
+	{
+		"nombre": "Rugby",
+		"texto": "NUNCA SABES POR DONDE VA A SALIR",
+		"textura": preload("res://assets/sprites/pelota_rugby.png"),
+		"radio": 20.0, "inicial": 380.0, "aceleracion": 1.035, "maxima": 600.0,
+		"rebote": 1.15, "frenado": 3.0,
+		"forma": "rugby", "caos": 5,
 	},
 ]
 

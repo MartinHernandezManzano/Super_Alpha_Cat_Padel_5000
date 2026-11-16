@@ -41,13 +41,24 @@ func actualizar() -> void:
 	stats += "TOPE     " + estrellas(datos["maxima"], RANGO_MAXIMA) + "\n"
 	stats += "ACELERA  " + estrellas(datos["aceleracion"], RANGO_ACELERACION) + "\n"
 	stats += "TAMAÑO   " + estrellas(datos["radio"], RANGO_RADIO) + "\n"
-	stats += "BOTE     " + estrellas(datos["rebote"], RANGO_REBOTE)
+	stats += "BOTE     " + estrellas(datos["rebote"], RANGO_REBOTE) + "\n"
+	stats += "CAOS     " + estrellas_fijas(datos.get("caos", 1))
 	$Centro/Stats.text = stats
 
 func estrellas(valor: float, rango: Array) -> String:
 	# convierte el valor en 1 a 5 estrellas segun donde caiga dentro del rango
 	var proporcion: float = (valor - rango[0]) / (rango[1] - rango[0])
 	var llenas: int = clampi(int(round(proporcion * 4)) + 1, 1, 5)
+	var texto: String = ""
+	for i in 5:
+		if i < llenas:
+			texto += "★"
+		else:
+			texto += "☆"
+	return texto
+
+func estrellas_fijas(llenas: int) -> String:
+	# para datos que ya vienen en estrellas, como el caos
 	var texto: String = ""
 	for i in 5:
 		if i < llenas:
